@@ -12,19 +12,19 @@ struct Menu {
 };
 
 void display(Menu* head) {
-    if (head == NULL) {
+    if (head == nullptr) {
         cout << "THE LIST IS EMPTY" << endl;
         return;
     }
     Menu* tmp = head;
-    while (tmp->next != NULL) {
+    while (tmp->next != nullptr) {
         cout << tmp->id << " | " << tmp->name << ", " << tmp->price << " rub, " << tmp->weight << " gr" << endl;
         tmp = tmp->next;
     }
     cout << tmp->id << " | " << tmp->name << ", " << tmp->price << " rub, " << tmp->weight << " gr" << endl << endl;
 }
 
-void addToStart(Menu*& head, int id, string name, float price, float weight) {
+void addToStart(Menu*& head, int id, const string& name, float price, float weight) {
     Menu* tmp = new Menu;
 
     tmp->id = id;
@@ -36,13 +36,13 @@ void addToStart(Menu*& head, int id, string name, float price, float weight) {
     head = tmp;
 }
 
-void addToEnd(Menu*& head, int id, string name, float price, float weight) {
-    if (head == NULL) {
+void addToEnd(Menu*& head, int id, const string& name, float price, float weight) {
+    if (head == nullptr) {
         addToStart(head, id, name, price, weight);
         return ;
     }
     Menu* tmp = head;
-    while (tmp->next != NULL) {
+    while (tmp->next != nullptr) {
         tmp = tmp->next;
     }
     tmp->next = new Menu;
@@ -50,16 +50,16 @@ void addToEnd(Menu*& head, int id, string name, float price, float weight) {
     tmp->next->name = name;
     tmp->next->price = price;
     tmp->next->weight = weight;
-    tmp->next->next = NULL;
+    tmp->next->next = nullptr;
 }
 
-void addAfterElement(Menu*& head, int idx, int id, string name, float price, float weight) {
-    if (head == NULL) {
+void addAfterElement(Menu*& head, int idx, int id, const string& name, float price, float weight) {
+    if (head == nullptr) {
         cout << "NO ELEMENTS IN STRUCT " << endl;
         return ;
     }
     Menu* tmp = head;
-    while (tmp->next != NULL) {
+    while (tmp->next != nullptr) {
         if (tmp->id == idx) {
             Menu* newNode = new Menu;
             newNode->id = id;
@@ -76,7 +76,7 @@ void addAfterElement(Menu*& head, int idx, int id, string name, float price, flo
 }
 
 void remove(Menu*& head, int id) {
-    if (head == NULL) { return; }
+    if (head == nullptr) { return; }
     Menu* tmp = head;
     if (tmp->id == id) {
         head = head->next;
@@ -84,7 +84,7 @@ void remove(Menu*& head, int id) {
         return;
     }
     else {
-        while (tmp->next != NULL) {
+        while (tmp->next != nullptr) {
             if (tmp->next->id == id) {
                 Menu* tmp_to_remove = tmp->next;
                 tmp->next = tmp->next->next;
@@ -98,7 +98,7 @@ void remove(Menu*& head, int id) {
 
 void find(Menu* head, int id) {
     Menu* tmp = head;
-    while (tmp != NULL) {
+    while (tmp != nullptr) {
         if (tmp->id == id) {
             cout << tmp->id << " | " << tmp->name << ", " << tmp->price << " rub, " << tmp->weight << " gr" << endl;
             return ;
@@ -110,7 +110,7 @@ void find(Menu* head, int id) {
 
 int main() {
     // ДЗ Добавление в конец списка и добавление после заданного элемента
-    Menu* head = NULL;
+    Menu* head = nullptr;
     addToEnd(head, 14, "LOL", 99.99, 100.0);
     addToStart(head, 1, "Burger", 349.99, 250.0);
     addToStart(head, 2, "Chicken nuggets", 149.99, 150.0);
